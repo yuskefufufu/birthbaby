@@ -1,0 +1,113 @@
+<!--
+ * Baby Gender Reveal
+ * Copyright (c) 2023 Tanemaki
+-->
+<html>
+<head>
+	<title>Baby Gender Reveal</title>
+	<link rel="icon" href="https://www.i2me.net/wp/wp-content/uploads/fbrfg/favicon.ico">
+	<style>
+		html {
+			scroll-behavior: smooth;
+		}
+		body {
+			display: flex;
+			flex-direction: row;
+			font-family: "Comic Sans MS";
+			text-align: center;
+			background-image: url("https://frame-illust.com/fi/wp-content/uploads/2015/01/88a809cd09d9b50634faa6445fccf03e.png");
+		}
+		.side {
+			flex: 0.1;
+			display: flex;
+			flex-direction: column;
+		}
+		.side img {
+			object-fit: cover;
+			width: 140px;
+  			height: 240px;
+		}
+		.images {
+			width: 700px;
+			visibility: hidden;
+			opacity: 0;
+		}
+		.animation {
+			animation: genderReveal 6.0s linear;
+			animation-delay: 1s;
+			animation-fill-mode: both;
+		}
+		#revealButton {
+			padding: 10px 20px;
+			background-color: #ffff66;
+			border: 2px solid lightyellow;
+			border-radius: 20px;
+			font-size: 20px;
+			font-weight: bold;
+			box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+			cursor: pointer;
+		}
+		#revealButton:hover {
+			color: #333333;
+			background-color: #ffff80;
+			border: 2px solid white;
+		}
+		#boy {
+			position: relative;
+		}
+		#girl {
+			position: relative;
+			z-index: -1;
+            top: -700px;
+		}
+		@keyframes genderReveal {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="side">
+
+
+
+	</div>
+	<div style="flex: 0.8; display: flex; flex-direction: column;">
+		<div>
+			<img src="https://img.freepik.com/free-vector/flat-design-gender-reveal-concept-illustration_23-2149020606.jpg?w=740&t=st=1675760379~exp=1675760979~hmac=0b3254b63f5b891ee852cf69275bd8323c4e45f06dd2c66a8eaffc5e915212480" alt="Baby Gender Reveal" style="width: 80%;">
+			<h1>Baby Gender Reveal</h1>
+			<button id="revealButton">Let's see!</button>
+			<div style="margin: 10px;">
+			</div>
+			<div style="margin: 5px;">
+				<img id="boy" class="images" src="https://img.freepik.com/free-vector/baby-boy-gender-reveal_53876-67632.jpg?w=740&t=st=1675764275~exp=1675764875~hmac=17a17b29799297bab4128fae8e41d50735f33b42542cda8810271dc10b2843ed" alt="Boy">
+				<img id="girl" class="images" src="https://img.freepik.com/free-vector/gender-reveal-of-a-girl_53876-67631.jpg?w=740&t=st=1675764268~exp=1675764868~hmac=c402a3cd5f8c2442b3bf021734c8d65456c3c2cd1c6efcf8adb1652b40fe1d06" alt="Girl">
+			</div>
+		</div>
+	</div>
+	<div class="side">
+	</div>
+	<audio id="music" src="https://commons.nicovideo.jp/api/preview/get?cid=107303&content_type=mp3" onplay="playMusic(this)"></audio>
+	<script>
+		// Change this value to reveal the baby's gender.
+		const GENDER = "boy";
+		// const GENDER = "girl";
+
+		function playMusic(self, img = document.getElementById(GENDER)) {
+			self.volume = 0.3;
+			img.classList.add("animation");
+			img.style.visibility = "visible";
+		}
+
+		document.getElementById("revealButton").addEventListener("click", async e => {
+			e.target.style.display = "none";
+			scroll(0, innerHeight);
+			await document.getElementById("music").play();
+		});
+	</script>
+</body>
+</html>
